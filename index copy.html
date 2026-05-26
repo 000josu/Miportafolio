@@ -1,0 +1,646 @@
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JCT Innovations</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    #themeToggle{
+  background:#00d4ff;
+  color:#000;
+  border:none;
+  padding:10px 15px;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+#themeToggle:hover{
+  transform:scale(1.05);
+}
+
+/* ===== MODO OSCURO ===== */
+body.dark{
+  background:#f5f7fa;
+  color:#111;
+}
+
+body.dark nav{
+  background:rgba(255,255,255,0.8);
+  border-bottom:1px solid #ddd;
+}
+
+body.dark .product-card{
+  background:#ffffff;
+  color:#111;
+}
+
+body.dark .stat{
+  background:#e9eef5;
+}
+
+body.dark footer{
+  background:#e5e7eb;
+  color:#111;
+}
+
+body.dark .hero{
+  filter:brightness(1.05);
+}
+    .logo-container{
+  display:flex;
+  justify-content:center;
+  margin-bottom:25px;
+}
+
+.logo-container img{
+  width:180px;
+  height:auto;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+  border:2px solid rgba(0,212,255,0.3);
+  transition:0.4s;
+}
+
+.logo-container img:hover{
+  transform:scale(1.05);
+  box-shadow:0 15px 40px rgba(0,212,255,0.4);
+}
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins', sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#050816;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    /* ===== SCROLL ===== */
+
+    ::-webkit-scrollbar{
+      width:10px;
+    }
+
+    ::-webkit-scrollbar-thumb{
+      background:#00d4ff;
+      border-radius:20px;
+    }
+
+    /* ===== NAVBAR ===== */
+
+    nav{
+      position:fixed;
+      width:100%;
+      top:0;
+      left:0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 8%;
+      z-index:999;
+      backdrop-filter:blur(10px);
+      background:rgba(0,0,0,0.3);
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+
+    .logo{
+      font-size:1.8rem;
+      font-weight:700;
+      color:#00d4ff;
+    }
+
+    nav ul{
+      display:flex;
+      gap:35px;
+      list-style:none;
+    }
+
+    nav ul li a{
+      text-decoration:none;
+      color:white;
+      transition:0.3s;
+      font-weight:500;
+    }
+
+    nav ul li a:hover{
+      color:#00d4ff;
+    }
+
+    /* ===== HERO ===== */
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      position:relative;
+      padding:0 10%;
+      background:
+      linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+      url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1800&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      background-attachment:fixed;
+    }
+
+    .hero-content{
+      z-index:2;
+      animation:fadeUp 1.2s ease;
+    }
+
+    .hero h1{
+      font-size:5rem;
+      font-weight:800;
+      line-height:1.1;
+      margin-bottom:20px;
+    }
+
+    .hero span{
+      color:#00d4ff;
+    }
+
+    .hero p{
+      max-width:850px;
+      margin:auto;
+      color:#cbd5e1;
+      font-size:1.2rem;
+      line-height:1.8;
+      margin-bottom:40px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:16px 35px;
+      border-radius:50px;
+      text-decoration:none;
+      font-weight:600;
+      transition:0.4s;
+      display:inline-block;
+    }
+
+    .btn-primary{
+      background:#00d4ff;
+      color:#000;
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-5px);
+      box-shadow:0 10px 30px rgba(0,212,255,0.5);
+    }
+
+    .btn-secondary{
+      border:2px solid #00d4ff;
+      color:#00d4ff;
+    }
+
+    .btn-secondary:hover{
+      background:#00d4ff;
+      color:black;
+    }
+
+    /* ===== SECTION ===== */
+
+    section{
+      padding:120px 10%;
+    }
+
+    .section-title{
+      text-align:center;
+      font-size:3rem;
+      margin-bottom:70px;
+      color:#00d4ff;
+      position:relative;
+    }
+
+    /* ===== PRODUCTS ===== */
+
+    .products{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:35px;
+    }
+
+    .product-card{
+      background:linear-gradient(145deg,#111827,#1f2937);
+      padding:40px;
+      border-radius:25px;
+      transition:0.4s;
+      border:1px solid rgba(255,255,255,0.08);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .product-card::before{
+      content:'';
+      position:absolute;
+      width:250px;
+      height:250px;
+      background:rgba(0,212,255,0.1);
+      border-radius:50%;
+      top:-120px;
+      right:-100px;
+    }
+
+    .product-card:hover{
+      transform:translateY(-15px);
+      box-shadow:0 15px 40px rgba(0,212,255,0.2);
+      border:1px solid rgba(0,212,255,0.4);
+    }
+
+    .product-icon{
+      font-size:3rem;
+      margin-bottom:20px;
+    }
+
+    .product-card h3{
+      font-size:1.7rem;
+      margin-bottom:15px;
+    }
+
+    .product-card p{
+      color:#cbd5e1;
+      line-height:1.8;
+    }
+
+    /* ===== ABOUT ===== */
+
+    .about{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:70px;
+      align-items:center;
+    }
+
+    .about img{
+      width:100%;
+      border-radius:25px;
+      box-shadow:0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    .about-text h2{
+      font-size:3rem;
+      margin-bottom:20px;
+      color:#00d4ff;
+    }
+
+    .about-text p{
+      line-height:2;
+      color:#cbd5e1;
+      margin-bottom:20px;
+    }
+
+    /* ===== STATS ===== */
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:30px;
+      text-align:center;
+      margin-top:60px;
+    }
+
+    .stat{
+      background:#0f172a;
+      padding:40px;
+      border-radius:20px;
+    }
+
+    .stat h3{
+      font-size:3rem;
+      color:#00d4ff;
+      margin-bottom:10px;
+    }
+
+    /* ===== CONTACT ===== */
+
+    .contact{
+      text-align:center;
+    }
+
+    .contact p{
+      color:#cbd5e1;
+      margin-bottom:40px;
+      font-size:1.1rem;
+    }
+
+    footer{
+      padding:30px;
+      text-align:center;
+      background:#020617;
+      color:#94a3b8;
+      border-top:1px solid rgba(255,255,255,0.05);
+    }
+
+    /* ===== ANIMATION ===== */
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(40px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    /* ===== RESPONSIVE ===== */
+
+    @media(max-width:900px){
+
+      .hero h1{
+        font-size:3rem;
+      }
+
+      .about{
+        grid-template-columns:1fr;
+      }
+
+      nav ul{
+        gap:15px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+    <div class="logo">JCT Innovations</div>
+
+    <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#sobre">Sobre mí</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <button id="themeToggle">🌙 Modo Oscuro</button>
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero" id="inicio">
+
+    <div class="hero-content">
+ <!-- LOGO -->
+  <div class="logo-container">
+    <img src="https://i.postimg.cc/FsXMh5PN/image.png" alt="JCT Innovations Logo">
+  </div>
+      <h1>
+        JCT <span>Innovations</span>
+      </h1>
+
+      <p>
+        Empresario Ingeniero de Software Senior  · 3189034233  · josuecuervot@ievillaflora.edu.co
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#productos" class="btn btn-primary">Ver Productos</a>
+        <a href="#contacto" class="btn btn-secondary">Contactarme</a>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PRODUCTS -->
+
+  <section id="productos">
+
+    <h2 class="section-title">Productos Premium</h2>
+
+    <div class="products">
+
+      <div class="product-card">
+        <div class="product-icon">🚀</div>
+
+        <h3>Paginas web</h3>
+
+        <p>
+          Diseño experiencias digitales profesionales para empresas, marcas y emprendedores que buscan destacar en internet con tecnología innovadora, diseño atractivo y soluciones inteligentes adaptadas a cada necesidad.
+        </p>
+      </div>
+
+      <div class="product-card">
+        <div class="product-icon">🧠</div>
+
+        <h3>Inteligencia Artificial</h3>
+
+        <p>
+          Creo sistemas inteligentes, automatizaciones avanzadas, asistentes virtuales y plataformas impulsadas por IA que ayudan a empresas y emprendedores a innovar, optimizar procesos y llevar sus negocios al siguiente nivel mediante tecnología moderna y eficiente.
+        </p>
+      </div>
+
+      <div class="product-card">
+        <div class="product-icon">🌐</div>
+
+        <h3>Marketing tecnologico</h3>
+
+        <p>
+          Ayudamos a empresas a potenciar su presencia digital mediante estrategias tecnológicas, optimización web y herramientas inteligentes. Mejoramos el posicionamiento online, el rendimiento de plataformas y la interacción con clientes digitales.
+        </p>
+      </div>
+
+      <div class="product-card">
+        <div class="product-icon">📱</div>
+
+        <h3>Desarrollo de Apps</h3>
+
+        <p>
+         Desarrollamos aplicaciones móviles para Android y iPhone con diseños intuitivos, alto rendimiento y funcionalidades avanzadas. Nuestras aplicaciones están pensadas para empresas y emprendedores que buscan conectar con sus usuarios a través de soluciones digitales modernas y eficientes.
+        </p>
+      </div>
+
+      <div class="product-card">
+        <div class="product-icon">☁️</div>
+
+        <h3>Servicios Cloud</h3>
+
+        <p>
+          Ofrecemos infraestructura en la nube segura y escalable para empresas que necesitan estabilidad, velocidad y protección de datos. Gestionamos servidores, bases de datos y sistemas cloud modernos que garantizan alto rendimiento y disponibilidad continua.
+        </p>
+      </div>
+
+      <div class="product-card">
+        <div class="product-icon">🤖</div>
+
+        <h3>Mantenimiento y soporte</h3>
+
+        <p>
+          Brindamos soporte técnico continuo, mantenimiento de sistemas y optimización de plataformas digitales. Nos encargamos de mantener el software actualizado, seguro y funcionando de manera eficiente para garantizar estabilidad y rendimiento constante.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+
+  <section id="sobre">
+
+    <div class="about">
+
+      <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1400&auto=format&fit=crop">
+
+      <div class="about-text">
+
+        <h2>Innovación y Tecnología</h2>
+
+        <p>
+          Soy Josue Cuervo Taborda, empresario y desarrollador especializado
+          en software empresarial moderno y soluciones digitales avanzadas.
+        </p>
+
+        <p>
+          Mi enfoque está en crear productos tecnológicos de alto impacto,
+          combinando diseño futurista, rendimiento extremo y escalabilidad empresarial.
+        </p>
+
+        <p>
+          Cada proyecto está diseñado para transformar empresas mediante innovación,
+          automatización e inteligencia artificial.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="stats">
+
+      <div class="stat">
+        <h3>50+</h3>
+        <p>Proyectos</p>
+      </div>
+
+      <div class="stat">
+        <h3>10+</h3>
+        <p>Productos Digitales</p>
+      </div>
+
+      <div class="stat">
+        <h3>100%</h3>
+        <p>Innovación</p>
+      </div>
+
+      <div class="stat">
+        <h3>24/7</h3>
+        <p>Soporte</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+
+  <section id="contacto">
+
+    <div class="contact">
+
+      <h2 class="section-title">Trabajemos Juntos</h2>
+
+      <p>
+        ¿Buscas transformar tu empresa con tecnología moderna?
+        Construyamos el próximo gran proyecto digital.
+      </p>
+
+      <a href="mailto:contacto@empresa.com" class="btn btn-primary">
+        Contactar Ahora
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    © 2026 Josue Cuervo Taborda | Software Engineer & Tech Entrepreneur
+  </footer>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    // EFECTO NAVBAR
+
+    window.addEventListener("scroll", function(){
+
+      const nav = document.querySelector("nav");
+
+      nav.style.background =
+      window.scrollY > 50
+      ? "rgba(0,0,0,0.85)"
+      : "rgba(0,0,0,0.3)";
+
+    });
+
+    // ANIMACIÓN DE CARDS
+
+    const cards = document.querySelectorAll('.product-card');
+
+    const observer = new IntersectionObserver(entries => {
+
+      entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = "translateY(0px)";
+
+        }
+
+      });
+
+    });
+
+    cards.forEach(card => {
+
+      card.style.opacity = 0;
+      card.style.transform = "translateY(60px)";
+      card.style.transition = "0.8s";
+
+      observer.observe(card);
+
+    });
+
+    console.log("Website Premium cargado correctamente 🚀");
+
+    const toggleBtn = document.getElementById("themeToggle");
+
+toggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+
+  if(document.body.classList.contains("dark")){
+    toggleBtn.textContent = "☀️ Modo Claro";
+  } else {
+    toggleBtn.textContent = "🌙 Modo Oscuro";
+  }
+});
+  </script>
+
+</body>
+</html>
